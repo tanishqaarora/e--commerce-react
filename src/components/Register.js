@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { showToast } from '../App';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -24,18 +23,12 @@ const Register = () => {
             }
             })
             result = await result.json();
-
-            // Show success message
-            toast.success('Registered Successfully!', {
-                position: 'top-center',
-                autoClose:3000
-            });
-            
+            showToast("Registered Successfully!", 'success')
             setRegistration(initialState);
             reset();    
         }
         catch(error) {
-            toast.error("Registration failed. Please try again.");
+            showToast("Registration failed. Please try again.", 'error');
         }
     };    
 
@@ -134,7 +127,7 @@ const Register = () => {
                     </div>
                 </div>
             </form>
-            <ToastContainer />
+            {/* <ToastContainer /> */}
         </>
     )
 }

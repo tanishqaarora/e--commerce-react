@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { showToast } from '../App';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -26,22 +25,16 @@ const Login = () => {
             const result = await response.json();
 
             if(response.status === 400) {
-                toast.error(result.message, {
-                    position: 'top-center',
-                    autoClose: 3000
-                })
+                showToast(result.message, 'error')
             } else {
                 // Show success message
-                toast.success('Log in Successfully!', {
-                    position: 'top-center',
-                    autoClose: 3000
-                });
+                showToast(result.message, 'success')
             }
             setLogin(initialState);
             reset();
         }
         catch(error) {
-            toast.error("Registration failed. Please try again.");
+            showToast("Registration failed. Please try again.", 'error');
         }
     };
 
@@ -103,7 +96,6 @@ const Login = () => {
                 </div>
             </div>
         </form>
-        <ToastContainer />
     </>
     )
 }
