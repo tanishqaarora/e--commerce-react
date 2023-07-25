@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import { showToast } from '../App';
+import { UserContext } from '../App';
+import Navbar from './Navbar';
 
 const Login = () => {
+    const navigate = useNavigate();
+
+    const [user, setUser] = useContext(UserContext);
+
+    const initialState = {id: null, email: '', password: ''}
+    const [login, setLogin] = useState(initialState)
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const initialState = { id: null, email: '', password:'' }
-    const [login, setLogin] = useState(initialState);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setLogin((login) => ({ ...login, [name]: value} ));
+        setLogin((user) => ({ ...user, [name]: value} ));
     };
 
     const onSubmit = async() => {
@@ -23,15 +31,15 @@ const Login = () => {
             }
             })
             const result = await response.json();
-
+            
             if(response.status === 400) {
                 showToast(result.message, 'error')
             } else {
-                // Show success message
                 showToast(result.message, 'success')
+                setUser(result.user)
+                setLogin(initialState);
+                navigate('/');
             }
-            setLogin(initialState);
-            reset();
         }
         catch(error) {
             showToast("Registration failed. Please try again.", 'error');
@@ -80,11 +88,10 @@ const Login = () => {
                             placeholder="Password" 
                         />
                         {errors.password && <p class="text-red-700">{errors.password.message}</p>}
-
-                        <button class="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white" >
+                        <button user={user} class="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white" >
                             Login
                             <div class="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30" ></div>
-                        </button>                          
+                        </button>                        
                     </div>
 
                     <div class="text-grey-dark mt-6">
@@ -96,8 +103,10 @@ const Login = () => {
                 </div>
             </div>
         </form>
+        {user && <Navbar user={user}/>}
     </>
     )
 }
 
 export default Login;
+
