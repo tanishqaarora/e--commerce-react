@@ -4,11 +4,9 @@ import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Navbar from './components/Navbar';
+import Layout from './components/Layout';
 import Register from './components/Register';
 import Login from './components/Login';
-// import ProductSearch from './components/product/ProductSearch';
-// import ShowProducts from './components/product/ShowProducts'
 
 export const showToast = (message, type) => {
   if(type === 'success') {
@@ -43,11 +41,12 @@ const App = () => {
     <>
       <UserContext.Provider value={[user, setUser]}>
       <div className="App">
-        <Routes>
-          <Route path='/' element={ <Navbar/>  }/>
-          <Route path='/register' element={ <Register/> }/>
-          <Route path='/login' element={ <Login/> }/>
-        </Routes>
+        <Layout>
+          <Routes>
+                <Route path='/register' element={ <Register/> }/>
+                <Route path='/login' element={ <Login/> }/>
+          </Routes>
+        </Layout>
       </div>
       </UserContext.Provider>
       <ToastContainer />

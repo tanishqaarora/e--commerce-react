@@ -22,7 +22,7 @@ const Login = () => {
 
     const onSubmit = async() => {
         try {
-            const response = await fetch('http://localhost:3003/login', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
             method: 'POST',
             body: JSON.stringify(login),
             headers: {
