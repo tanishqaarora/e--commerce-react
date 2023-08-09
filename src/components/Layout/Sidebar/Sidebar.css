@@ -1,0 +1,41 @@
+.wrapper{
+    background-color: rgb(204, 214, 225);
+    /* position: fixed; */
+    /* top: 0; */
+    left: 0;
+    width: 225px;
+    height: 100%;
+    padding: 12px 12px;
+    transition: all 0.5s ease;
+}
+
+.filters-heading {
+    display: inline-flex;
+    border-bottom: 0.5px solid #aaa;
+    width: 100%;
+    padding: 16px;
+    font-size: larger;
+}
+
+.filter-items {
+    margin: 5px;
+}
+
+.price input {
+    width: 80%;
+    margin: 4px;
+}
+
+.size, .brand, .color, .category, .rating, .price {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+    width: 80%;
+    margin: 12px;
+} 
+.checkmark {
+    height: 25px;
+    width: 120px;
+    text-align: left;
+}
+
