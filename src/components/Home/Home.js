@@ -1,21 +1,19 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Layout from '../Layout/Layout';
-import Register from '../Auth/Register';
-import Login from '../Auth/Login';
+import Sidebar from '../Layout/Sidebar/Sidebar';
+import Search from '../Search/Search'
 
 const Home = () => {
     return (
       <>
-        <div>
-          <Layout>
-            <Routes>
-              {/* <Route path='/' element={ <Home/> }/> */}
-              <Route path='/register' element={ <Register/> }/>
-              <Route path='/login' element={ <Login/> }/>
-            </Routes>
-        </Layout>
+        <div class="flex gap-2">
+          <div> 
+            <Sidebar/>
+          </div>
+          <div className="bg-gray-300 w-full">
+            <Search/>
+          </div>
         </div>
+       
       </>
     )
 }

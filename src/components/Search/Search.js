@@ -78,7 +78,6 @@ const Search = () => {
                     </svg>
                 </button>
             </div>
-            
             <div class="m-9 grid grid-cols-4 gap-3">
                 {products && products.length > 0 ? (
                     products.map(product => 
