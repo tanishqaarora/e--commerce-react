@@ -1,13 +1,8 @@
 import React, { createContext, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import Home from './components/Home';
-import Layout from './components/Layout';
-import Register from './components/Register';
-import Login from './components/Login';
+import MainComponent from './components/MainComponent/MainComponent';
 
 export const showToast = (message, type) => {
   if(type === 'success') {
@@ -42,13 +37,7 @@ const App = () => {
     <>
       <UserContext.Provider value={[user, setUser]}>
       <div className="App">
-        <Layout>
-          <Routes>
-                <Route path='/' element={ <Home/> }/>
-                <Route path='/register' element={ <Register/> }/>
-                <Route path='/login' element={ <Login/> }/>
-          </Routes>
-        </Layout>
+        <MainComponent/>
       </div>
       </UserContext.Provider>
       <ToastContainer />

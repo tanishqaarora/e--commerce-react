@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { showToast } from '../App';
+import { showToast } from '../../App';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -111,13 +111,11 @@ const Register = () => {
                             />
                             {errors.password && <p class="text-red-700">{errors.password.message}</p>}
 
-
                             <button class="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white">
                                 Create Account
                                 <div class="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                             </button>
                         </div>
-
                         <div class="text-grey-dark mt-6">
                             Already have an account? 
                             <a class="no-underline border-b border-blue-700 text-blue-700" href="/login">
@@ -127,7 +125,6 @@ const Register = () => {
                     </div>
                 </div>
             </form>
-            {/* <ToastContainer /> */}
         </>
     )
 }
